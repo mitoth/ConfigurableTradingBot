@@ -3,6 +3,9 @@
 
 name: .NET
 
+env:
+  COSMOS_CONNECTION_STRING: ${{ secrets.COSMOS_CONNECTION_STRING }}
+
 on:
   push:
     branches: [ "main" ]
