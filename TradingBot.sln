@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.API", "TradingBot.API\TradingBot.API.csproj", "{D3896E42-2FAE-4967-B834-86F1B0D5711A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.Core", "TradingBot.Core\TradingBot.Core.csproj", "{718B28A4-C12C-4E06-91EC-1E4B49450000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{CF51804D-7E3E-4347-ACCA-7932850A23B3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IntegrationTests", "IntegrationTests\IntegrationTests.csproj", "{02A502DA-A1C3-4772-A4BB-E3000E12F9DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D3896E42-2FAE-4967-B834-86F1B0D5711A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3896E42-2FAE-4967-B834-86F1B0D5711A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3896E42-2FAE-4967-B834-86F1B0D5711A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3896E42-2FAE-4967-B834-86F1B0D5711A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{718B28A4-C12C-4E06-91EC-1E4B49450000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{718B28A4-C12C-4E06-91EC-1E4B49450000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{718B28A4-C12C-4E06-91EC-1E4B49450000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{718B28A4-C12C-4E06-91EC-1E4B49450000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02A502DA-A1C3-4772-A4BB-E3000E12F9DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02A502DA-A1C3-4772-A4BB-E3000E12F9DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02A502DA-A1C3-4772-A4BB-E3000E12F9DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02A502DA-A1C3-4772-A4BB-E3000E12F9DC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{02A502DA-A1C3-4772-A4BB-E3000E12F9DC} = {CF51804D-7E3E-4347-ACCA-7932850A23B3}
+	EndGlobalSection
+EndGlobal
