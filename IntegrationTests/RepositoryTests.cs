@@ -34,10 +34,10 @@ public class RepositoryTests
     }
     
     [Test]
-    public async Task AddGetOrder()
+    public async Task AddGetUpdateDeleteOrder()
     {
         var id = Guid.NewGuid().ToString();
-        var order1 = new Order()
+        var initialOrder = new Order()
         {
             Id = id,
             Price = 100,
@@ -59,10 +59,43 @@ public class RepositoryTests
                 }
             }
         };
-        await _orderRepository.CreateAsync(order1);
+        await _orderRepository.CreateAsync(initialOrder);
         var res = await _orderRepository.GetAsync();
         var order = await _orderRepository.GetAsync(id);
         That(res.Any(), Is.True);
-        order.Should().BeEquivalentTo(order1);
+        order.Should().BeEquivalentTo(initialOrder);
+        var updatedOrder = new Order()
+        {
+            Id = id,
+            Price = 100,
+            Quantity = 23,
+            Symbol = "MSFT",
+            OrderType = OrderType.Sell,
+            OrderConditions = new List<OrderCondition>()
+            {
+                new OtherStockBasedCondition(_marketPricesService)
+                {
+                    StockName = "MSFT",
+                    TargetPriceLowerThan = 100,
+                    TargetPriceUpperThan = 200
+                },
+                new NewsBasedCondition()
+                {
+                    SearchString = "fcsb",
+                    NewsShouldBePositive = false
+                },
+                new NewsBasedCondition()
+                {
+                    SearchString = "RVN",
+                    NewsShouldBePositive = false
+                }
+            }
+        };
+        await _orderRepository.UpdateAsync(updatedOrder);
+        order = await _orderRepository.GetAsync(id);
+        order.Should().BeEquivalentTo(updatedOrder);
+        await _orderRepository.DeleteAsync(id);
+        order = await _orderRepository.GetAsync(id);
+        Assert.Null(order);
     }
 }
