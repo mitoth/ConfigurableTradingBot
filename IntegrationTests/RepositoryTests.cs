@@ -1,5 +1,6 @@
-using System.Globalization;
 using FluentAssertions;
+using FluentValidation;
+using FluentValidation.Results;
 using MongoDB.Driver;
 using Moq;
 using NUnit.Framework;
@@ -12,25 +13,29 @@ namespace IntegrationTests;
 
 public class RepositoryTests
 {
-    private IOrderRepository _orderRepository;
-    private IStockMarketPricesService _marketPricesService;
-    private string _testDBName;
-    private MongoClient _client;
+    private readonly IOrderRepository _orderRepository;
+    private readonly IStockMarketPricesService _marketPricesService;
+    private readonly string _testDbName;
+    private readonly MongoClient _client;
 
-    [SetUp]
-    public void Setup()
+    public RepositoryTests()
     {
-        _testDBName = "test";
+        _testDbName = "test";
         _client = new MongoClient(
             Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING"));
-        _orderRepository = new OrderRepository(_client, _testDBName);
+        var validatorMock = new Mock<IValidator<Order>>();
+        validatorMock.Setup(v =>
+                v.ValidateAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()))
+            .ReturnsAsync(new ValidationResult());
+        
+        _orderRepository = new OrderRepository(_client, validatorMock.Object, _testDbName);
         _marketPricesService = new Mock<IStockMarketPricesService>().Object;
     }
 
     [TearDown]
     public void TearDown()
     {
-        _client.DropDatabase(_testDBName);
+        _client.DropDatabase(_testDbName);
     }
     
     [Test]

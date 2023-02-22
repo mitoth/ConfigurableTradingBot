@@ -7,6 +7,6 @@ namespace TradingBot.Core.Abstractions;
 [BsonKnownTypes(typeof(NewsBasedCondition))]
 public abstract class OrderCondition
 {
-    public abstract string ConditionType { get; }
+    public abstract string ConditionType { get; set; }
     public abstract bool IsFulfilled();
 }
