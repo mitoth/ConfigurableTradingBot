@@ -4,9 +4,12 @@ namespace TradingBot.Core.Models;
 
 public class NewsBasedCondition : OrderCondition
 {
-    public string SearchString { get; init; }
-    public bool NewsShouldBePositive { get; init; }
-    
+    public string SearchString { get; set; }
+    public bool NewsShouldBePositive { get; set; }
+
+    public override string ConditionType { get; }
+        = ConditionTypeEnum.NewsBasedCondition.ToString();
+
     public override bool IsFulfilled()
     {
         return true;

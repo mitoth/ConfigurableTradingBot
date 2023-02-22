@@ -9,14 +9,17 @@ public class OtherStockBasedCondition : OrderCondition
 {
     private readonly IStockMarketPricesService _stockMarketPricesService;
 
-    public string StockName { get; init; }
-    public decimal? TargetPriceLowerThan { get; init; }
-    public decimal? TargetPriceUpperThan { get; init; }
-    
+    public string StockName { get; set; }
+    public decimal? TargetPriceLowerThan { get; set; }
+    public decimal? TargetPriceUpperThan { get; set; }
+
     public OtherStockBasedCondition(IStockMarketPricesService stockMarketPricesService)
     {
         _stockMarketPricesService = stockMarketPricesService;
     }
+
+    public override string ConditionType { get; } 
+        = ConditionTypeEnum.OtherStockBasedCondition.ToString();
 
     public override bool IsFulfilled()
     {
