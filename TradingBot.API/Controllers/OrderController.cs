@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using FluentValidation;
+using Microsoft.AspNetCore.Mvc;
 using TradingBot.Core.Abstractions;
 using TradingBot.Core.Models;
 
@@ -9,10 +10,13 @@ namespace TradingBot.API.Controllers;
 public class OrderController : ControllerBase
 {
     private readonly IOrderRepository _orderRepository;
+    private readonly IValidator<Order> _validator;
 
-    public OrderController(IOrderRepository orderRepository)
+
+    public OrderController(IOrderRepository orderRepository, IValidator<Order> validator)
     {
         _orderRepository = orderRepository;
+        _validator = validator;
     }
 
     [HttpGet("{id}")]
@@ -28,6 +32,7 @@ public class OrderController : ControllerBase
         {
             order.Id = Guid.NewGuid().ToString();
         }
+        await _validator.ValidateAsync(order);
 
         await _orderRepository.CreateAsync(order);
         return order.Id;
@@ -36,10 +41,7 @@ public class OrderController : ControllerBase
     [HttpPatch]
     public async Task<ActionResult> Update(Order order)
     {
-        if (string.IsNullOrWhiteSpace(order.Id))
-        {
-            return BadRequest("ID mandatory on update");
-        }
+        await _validator.ValidateAsync(order);
 
         await _orderRepository.UpdateAsync(order);
         return Ok();
