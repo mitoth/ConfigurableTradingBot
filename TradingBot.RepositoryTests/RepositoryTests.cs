@@ -9,7 +9,7 @@ using TradingBot.Core.Models;
 using TradingBot.Core.Repository;
 using static NUnit.Framework.Assert;
 
-namespace IntegrationTests;
+namespace TradingBot.RepositoryTests;
 
 public class RepositoryTests
 {
