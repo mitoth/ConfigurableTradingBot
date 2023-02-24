@@ -19,6 +19,13 @@ public class OrderController : ControllerBase
         _validator = validator;
     }
 
+    [HttpGet("all", Name = "GetAllOrders")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IEnumerable<Order>> GetAllOrders()
+    {
+        return await _orderRepository.GetAsync();
+    }
+    
     [HttpGet("{id}")]
     public async Task<ActionResult<Order>> Get(string id)
     {
