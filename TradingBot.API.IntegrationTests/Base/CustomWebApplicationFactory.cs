@@ -2,6 +2,7 @@
 using JsonSubTypes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using MongoDB.Driver;
 using TradingBot.Core.Abstractions;
@@ -15,6 +16,13 @@ public class CustomWebApplicationFactory<TStartup>
     : WebApplicationFactory<TStartup> where TStartup : class{
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        var configuration = new ConfigurationBuilder()
+            .AddUserSecrets<TStartup>()
+            .AddEnvironmentVariables()
+            .Build();
+        
+        string connectionString = configuration.GetValue<string>("COSMOS_CONNECTION_STRING") 
+                                  ?? throw new InvalidOperationException("Cannot find COSMOS_CONNECTION_STRING env variable");
         builder.ConfigureServices(services =>
         {
             services.AddControllers().
@@ -33,7 +41,6 @@ public class CustomWebApplicationFactory<TStartup>
             services.AddScoped<IValidator<NewsBasedCondition>, NewsBasedConditionValidator>();
             services.AddScoped<IValidator<OtherStockBasedCondition>, OtherStockBasedConditionValidator>();
             services.AddScoped<IValidator<Order>, OrderValidator>();
-            var connectionString = Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING");
             services.AddSingleton<MongoClient>(_ => new MongoClient(connectionString));
             services.AddTransient<IOrderRepository, OrderRepository>();
         });

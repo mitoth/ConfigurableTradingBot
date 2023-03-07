@@ -10,8 +10,8 @@ public class NewsBasedCondition : OrderCondition
     public override string ConditionType { get; set; }
         = ConditionTypeEnum.NewsBasedCondition.ToString();
 
-    public override bool IsFulfilled()
+    public override Task<bool> IsFulfilled()
     {
-        return true;
+        return Task.FromResult(true);
     }
 }

@@ -8,5 +8,5 @@ namespace TradingBot.Core.Abstractions;
 public abstract class OrderCondition
 {
     public abstract string ConditionType { get; set; }
-    public abstract bool IsFulfilled();
+    public abstract Task<bool> IsFulfilled();
 }

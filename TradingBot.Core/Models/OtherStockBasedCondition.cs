@@ -21,9 +21,9 @@ public class OtherStockBasedCondition : OrderCondition
     public override string ConditionType { get; set; } 
         = ConditionTypeEnum.OtherStockBasedCondition.ToString();
 
-    public override bool IsFulfilled()
+    public override async Task<bool> IsFulfilled()
     {
-        var latestPrice = _stockMarketPricesService.GetLatestPrice(StockName);
+        var latestPrice = await _stockMarketPricesService.GetLatestPrice(StockName, new CancellationToken());
         if (TargetPriceUpperThan.HasValue &&
             TargetPriceUpperThan < latestPrice)
         {
