@@ -69,6 +69,13 @@ public class RepositoryTests
                 {
                     SearchString = "fcsb",
                     NewsShouldBePositive = false
+                },
+                new PriceChangeCondition()
+                {
+                    Quantity = 6,
+                    Symbol = "msft",
+                    Increase = -10.5m,
+                    BasePrice = 66.8m
                 }
             }
         };
@@ -101,6 +108,13 @@ public class RepositoryTests
                 {
                     SearchString = "RVN",
                     NewsShouldBePositive = false
+                },
+                new PriceChangeCondition()
+                {
+                    Quantity = 6,
+                    Symbol = "msft",
+                    Increase = 1.5m,
+                    BasePrice = 6.8m
                 }
             }
         };

@@ -23,6 +23,7 @@ builder.Services
                 .Of(typeof(OrderCondition), nameof(OrderCondition.ConditionType))
                 .RegisterSubtype(typeof(NewsBasedCondition), ConditionTypeEnum.NewsBasedCondition)
                 .RegisterSubtype(typeof(OtherStockBasedCondition), ConditionTypeEnum.OtherStockBasedCondition)
+                .RegisterSubtype(typeof(PriceChangeCondition), ConditionTypeEnum.PriceChangeCondition)
                 .SerializeDiscriminatorProperty()
                 .Build()
         );
