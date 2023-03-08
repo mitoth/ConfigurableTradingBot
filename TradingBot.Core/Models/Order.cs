@@ -9,5 +9,8 @@ public class Order
     public string? Symbol { get; set; }
     public int Quantity { get; set; }
     public decimal Price { get; set; }
-    public List<OrderCondition> OrderConditions { get; set; } = new List<OrderCondition>();
+    public List<OrderCondition> BuyOrderConditions { get; set; } = new List<OrderCondition>();
+
+    public List<OrderCondition> SellOrderConditions { get; set; } = new List<OrderCondition>();
+
 }

@@ -8,7 +8,7 @@ public class OrderValidator : AbstractValidator<Order>
     {
         RuleFor(c => c.Symbol).NotEmpty();
         RuleFor(c => c.Id).NotEmpty();
-        RuleForEach(c => c.OrderConditions).SetInheritanceValidator(
+        RuleForEach(c => c.BuyOrderConditions).SetInheritanceValidator(
             v =>
             {
                 v.Add(new NewsBasedConditionValidator());

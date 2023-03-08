@@ -3,5 +3,6 @@
 public enum ConditionTypeEnum
 {
     NewsBasedCondition,
-    OtherStockBasedCondition
+    OtherStockBasedCondition,
+    PriceChangeCondition
 }

@@ -42,7 +42,7 @@ public class OrderControllerTests
             Quantity = 23,
             Symbol = "AAPL",
             OrderType = OrderType.Sell,
-            OrderConditions = new List<OrderCondition>()
+            BuyOrderConditions = new List<OrderCondition>()
             {
                 new OtherStockBasedCondition(_marketPricesService)
                 {

@@ -1,6 +1,8 @@
+using System.Reflection;
 using FluentAssertions;
 using FluentValidation;
 using FluentValidation.Results;
+using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 using Moq;
 using NUnit.Framework;
@@ -20,9 +22,15 @@ public class RepositoryTests
 
     public RepositoryTests()
     {
+        var configuration = new ConfigurationBuilder()
+            .AddUserSecrets(Assembly.GetExecutingAssembly())
+            .AddEnvironmentVariables()
+            .Build();
+        
         _testDbName = "test";
         _client = new MongoClient(
-            Environment.GetEnvironmentVariable("COSMOS_CONNECTION_STRING"));
+                configuration.GetValue<string>("COSMOS_CONNECTION_STRING") 
+                ?? throw new InvalidOperationException("Cannot find COSMOS_CONNECTION_STRING env variable"));
         var validatorMock = new Mock<IValidator<Order>>();
         validatorMock.Setup(v =>
                 v.ValidateAsync(It.IsAny<Order>(), It.IsAny<CancellationToken>()))
@@ -49,7 +57,7 @@ public class RepositoryTests
             Quantity = 23,
             Symbol = "AAPL",
             OrderType = OrderType.Sell,
-            OrderConditions = new List<OrderCondition>()
+            BuyOrderConditions = new List<OrderCondition>()
             {
                 new OtherStockBasedCondition(_marketPricesService)
                 {
@@ -76,7 +84,7 @@ public class RepositoryTests
             Quantity = 23,
             Symbol = "MSFT",
             OrderType = OrderType.Sell,
-            OrderConditions = new List<OrderCondition>()
+            BuyOrderConditions = new List<OrderCondition>()
             {
                 new OtherStockBasedCondition(_marketPricesService)
                 {

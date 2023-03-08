@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.RepositoryTests"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.API.IntegrationTests", "TradingBot.API.IntegrationTests\TradingBot.API.IntegrationTests.csproj", "{D8614CFE-8971-445F-B0CB-33F53254649A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TradingBot.UnitTests", "TradingBot.UnitTests\TradingBot.UnitTests.csproj", "{93770FFB-3910-4599-8386-B395EB4BDEC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,9 +34,14 @@ Global
 		{D8614CFE-8971-445F-B0CB-33F53254649A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8614CFE-8971-445F-B0CB-33F53254649A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8614CFE-8971-445F-B0CB-33F53254649A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93770FFB-3910-4599-8386-B395EB4BDEC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93770FFB-3910-4599-8386-B395EB4BDEC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93770FFB-3910-4599-8386-B395EB4BDEC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93770FFB-3910-4599-8386-B395EB4BDEC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E07095D3-1D79-41F2-B309-450038893AA6} = {CF51804D-7E3E-4347-ACCA-7932850A23B3}
 		{D8614CFE-8971-445F-B0CB-33F53254649A} = {CF51804D-7E3E-4347-ACCA-7932850A23B3}
+		{93770FFB-3910-4599-8386-B395EB4BDEC2} = {CF51804D-7E3E-4347-ACCA-7932850A23B3}
 	EndGlobalSection
 EndGlobal
